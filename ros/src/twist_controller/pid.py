@@ -11,11 +11,12 @@ class PID(object):
         self.min = mn
         self.max = mx
 
-        self.int_val = self.last_int_val = self.last_error = 0.
+        self.int_val = self.last_int_val = self.last_error = 0.0
 
     def reset(self):
         self.int_val = 0.0
         self.last_int_val = 0.0
+        self.last_error = 0.0
 
     def step(self, error, sample_time):
         self.last_int_val = self.int_val

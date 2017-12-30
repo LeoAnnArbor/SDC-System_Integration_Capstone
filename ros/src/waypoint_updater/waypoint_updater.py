@@ -84,7 +84,7 @@ class WaypointUpdater(object):
             wp1 = i
         return dist
 
-     def euclidean_distance_3d(self, position1, position2):
+    def euclidean_distance_3d(self, position1, position2):
      	p1 = position1
      	p2 = position2
 

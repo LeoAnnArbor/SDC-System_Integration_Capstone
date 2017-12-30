@@ -125,7 +125,7 @@ class DBWNode(object):
                     current_velocity = self.current_velocity,
                     del_time = del_time)
             
-                self.publish(throttle, brake, steer)
+                self.publish(throttle, brake, steering)
             else:
                 self.reset_flag = True
             

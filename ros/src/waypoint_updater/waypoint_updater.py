@@ -104,7 +104,7 @@ class WaypointUpdater(object):
                 
         return closest_waypoint
 
-	def next_waypoint(self, pose, waypoints):
+    def next_waypoint(self, pose, waypoints):
         
         closest_waypoint = self.closest_waypoint(pose, waypoints)
         map_x = waypoints[closest_waypoint].pose.pose.position.x

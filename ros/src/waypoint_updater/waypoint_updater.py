@@ -51,7 +51,7 @@ class WaypointUpdater(object):
 
     def pose_cb(self, msg):
         self.cur_pose = msg.pose
-        if self.waypoint is not None:
+        if self.waypoints is not None:
         	self.publish()
 
     def waypoints_cb(self, lane):
@@ -105,7 +105,7 @@ class WaypointUpdater(object):
         return closest_waypoint
 
     def next_waypoint(self, pose, waypoints):
-        
+
         closest_waypoint = self.closest_waypoint(pose, waypoints)
         map_x = waypoints[closest_waypoint].pose.pose.position.x
         map_y = waypoints[closest_waypoint].pose.pose.position.y

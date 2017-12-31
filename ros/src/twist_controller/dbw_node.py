@@ -126,6 +126,7 @@ class DBWNode(object):
                     del_time = del_time)
             
                 self.publish(throttle, brake, steering)
+                
             else:
                 self.reset_flag = True
             

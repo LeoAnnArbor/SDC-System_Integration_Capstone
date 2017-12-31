@@ -151,7 +151,7 @@ class WaypointUpdater(object):
         
         if self.cur_pose is not None:
             next_waypoint_index = self.next_waypoint(self.cur_pose, self.waypoints)
-            lookahead_waypoints = self.waypoints[next_waypoint_index:next_waypoint_index+LOOKAHEAD_WPS]
+            # lookahead_waypoints = self.waypoints[next_waypoint_index:next_waypoint_index+LOOKAHEAD_WPS]
 
             # if (next_waypoint_index + LOOKAHEAD_WPS < len(self.waypoints)):
 

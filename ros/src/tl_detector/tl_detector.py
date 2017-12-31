@@ -148,17 +148,6 @@ class TLDetector(object):
 
                 min_dist = dist
                 index = idx
-
-        map_x = pose_list[index].position.x
-        map_y = pose_list[index].position.y
-
-        heading = math.atan2(( map_y - pose.position.y), (map_x - pose.position.x))
-        quaternion = (pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w)
-        _, _, yaw = tf.transformations.euler_from_quaternion(quaternion)
-        angle = abs(yaw - heading)
-
-        if angle > (math.pi / 4):        
-            index += 1
         
         return index
 
@@ -216,6 +205,7 @@ class TLDetector(object):
             light_position = self.get_closest_index(self.pose.pose, self.lights)
 
             
+            
             stop_lines = list()
             
             for light_pos in stop_line_positions:
@@ -234,7 +224,7 @@ class TLDetector(object):
         if light:
             state = self.get_light_state(light)
             return light_wp, state
-        # self.waypoints = None
+        self.waypoints = None
         return -1, TrafficLight.UNKNOWN
 
 

@@ -99,6 +99,9 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
+        if not self.has_image:
+            rospy.loginfo("Received image from simulator")
+            
         self.has_image = True
         self.camera_image = msg
         # light_wp, state = self.process_traffic_lights()
@@ -202,7 +205,7 @@ class TLDetector(object):
             stop_line_wp = self.get_closest_index(stop_lines[light_position].pose.pose, self.waypoints.waypoints)
             
             state = self.get_light_state(self.lights[light_position])
-            #rospy.loginfo_throttle(2, "Light: " + str(state))
+            rospy.loginfo_throttle(2, "Light: " + str(state))
             return stop_line_wp, state
 
         #TODO find the closest visible traffic light (if one exists)

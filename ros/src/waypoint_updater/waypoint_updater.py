@@ -153,13 +153,13 @@ class WaypointUpdater(object):
             next_waypoint_index = self.next_waypoint(self.cur_pose, self.waypoints)
             # lookahead_waypoints = self.waypoints[next_waypoint_index:next_waypoint_index+LOOKAHEAD_WPS]
 
-            # if (next_waypoint_index + LOOKAHEAD_WPS < len(self.waypoints)):
+            if (next_waypoint_index + LOOKAHEAD_WPS < len(self.waypoints)):
 
-            #     lookahead_waypoints = self.waypoints[next_waypoint_index:next_waypoint_index+LOOKAHEAD_WPS]
+                lookahead_waypoints = self.waypoints[next_waypoint_index:next_waypoint_index+LOOKAHEAD_WPS]
 
-            # else:
+            else:
 
-            #     lookahead_waypoints = self.waypoints[next_waypoint_index:] + self.waypoints[:(next_waypoint_index+LOOKAHEAD_WPS - len(self.aypoints))] 
+                lookahead_waypoints = self.waypoints[next_waypoint_index:] + self.waypoints[:(next_waypoint_index+LOOKAHEAD_WPS - len(self.aypoints))] 
 
 
             if self.red_light_waypoint is None or self.red_light_waypoint < 0:

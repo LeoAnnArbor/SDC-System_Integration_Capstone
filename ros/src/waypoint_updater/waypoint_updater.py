@@ -58,7 +58,7 @@ class WaypointUpdater(object):
         	self.waypoints = lane.waypoints
 
     def traffic_cb(self, msg):
-        self.red_light_waypoint = msg
+        self.red_light_waypoint = msg.data
 
         rospy.loginfo("Detected light: " + str(msg.data))
 

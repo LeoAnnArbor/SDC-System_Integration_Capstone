@@ -18,9 +18,9 @@ class TwistController(object):
             max_steer_angle=cp.max_steer_angle)
 
         self.cp = cp
-        self.pid = PID(kp=2.6, ki=0.1, kd=1.3, mn=cp.decel_limit, mx=cp.accel_limit)
-        self.s_lpf = LowPassFilter(tau = 0.96, ts = 1)
-        self.t_lpf = LowPassFilter(tau = 0.96, ts = 1)
+        self.pid = PID(kp=4, ki=0.01, kd = 5, mn=cp.decel_limit, mx=cp.accel_limit)
+        self.s_lpf = LowPassFilter(tau = 1, ts = 1)
+        self.t_lpf = LowPassFilter(tau = 1, ts = 1)
 
     def reset(self):
         self.pid.reset()

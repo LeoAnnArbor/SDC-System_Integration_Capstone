@@ -149,6 +149,17 @@ class TLDetector(object):
                 min_dist = dist
                 index = idx
 
+        map_x = pose_list[index].position.x
+        map_y = pose_list[index].position.y
+
+        heading = math.atan2(( map_y - pose.position.y), (map_x - pose.position.x))
+        quaternion = (pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w)
+        _, _, yaw = tf.transformations.euler_from_quaternion(quaternion)
+        angle = abs(yaw - heading)
+
+        if angle > (math.pi / 4):        
+            index += 1
+        
         return index
 
 
@@ -203,18 +214,7 @@ class TLDetector(object):
         if(self.pose and self.waypoints):
 
             light_position = self.get_closest_index(self.pose.pose, self.lights)
-            # # Then, check whether the traffic light is behind, if it is, increment the index to make sure it's ahead
-            # heading = math.atan2(self.config[light_position].pose.pose.position.y - pose.position.y, 
-            #     self.lights[light_position].pose.pose.position.x - pose.position.x)
-            
-            # quaternion = (pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w)
 
-            # _, _, yaw = tf.transformations.euler_from_quaternion(quaternion)
-
-            # angle = abs(yaw - heading)
-        
-            # if (angle > (math.pi / 4)):
-            #     light_position += 1
             
             stop_lines = list()
             
@@ -237,14 +237,7 @@ class TLDetector(object):
         # self.waypoints = None
         return -1, TrafficLight.UNKNOWN
 
-    # def cap_value(self, value, min, max):
 
-    #     if value < min:
-    #         vaue = min
-    #     elif value > max:
-    #         value = max
-
-    #     return value
 
 if __name__ == '__main__':
     try:

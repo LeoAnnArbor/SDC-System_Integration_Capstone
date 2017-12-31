@@ -170,18 +170,15 @@ class WaypointUpdater(object):
                     self.set_waypoint_velocity(lookahead_waypoints, i, (TARGET_SPEED_MPH * 1609.34) / (60 * 60))
 
             else: 
-                    # Set target speed per waypoint
-                    # First just see whether the car deccelerates / stops if the traffic light ahead is red
-                waypoints_from_red_light = 100
-                if (self.red_light_waypoint and (abs(self.red_light_waypoint - next_waypoint_index) <= waypoints_from_red_light)):
-                    for waypoint in lookahead_waypoints:
-                        waypoint.twist.twist.linear.x = 0
+                #     # Set target speed per waypoint
+                #     # First just see whether the car deccelerates / stops if the traffic light ahead is red
+                # waypoints_from_red_light = 100
+                # if (self.red_light_waypoint and (abs(self.red_light_waypoint - next_waypoint_index) <= waypoints_from_red_light)):
+                #     for waypoint in lookahead_waypoints:
+                #         waypoint.twist.twist.linear.x = 0
        
-                # print("index of red_light_waypoint" + str(self.red_light_waypoint ))               
-                # redlight_lookahead_index = max(0, self.red_light_waypoint - next_waypoint_index)
-                # print("index of redlight_lookahead_index" + str(redlight_lookahead_index))
-
-                # lookahead_waypoints = self.decelerate(lookahead_waypoints, redlight_lookahead_index)
+                redlight_lookahead_index = max(0, self.red_light_waypoint - next_waypoint_index)
+                lookahead_waypoints = self.decelerate(lookahead_waypoints, redlight_lookahead_index)
 
             lane = Lane()
             lane.header.frame_id = '/world'

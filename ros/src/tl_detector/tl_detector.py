@@ -80,6 +80,7 @@ class TLDetector(object):
                     self.upcoming_red_light_pub.publish(Int32(light_wp))
                 else:
                     self.upcoming_red_light_pub.publish(Int32(self.last_wp))
+                
                 self.state_count += 1
             
             rate.sleep()
@@ -200,9 +201,9 @@ class TLDetector(object):
             light_position = self.get_closest_index(self.pose.pose, self.lights)
 
             stop_lines = list()
-            for stop_line_pos in stop_line_positions:
-                stop_line =  self.generate_stop_line(stop_line_pos[0], stop_line_pos[1], 0.)
-                stop_lines.append(stop_line)
+            for light_pos in stop_line_positions:
+                light =  self.generate_stop_line(light_pos[0], light_pos[1], 0.)
+                stop_lines.append(light)
             
             stop_line_wp = self.get_closest_index(stop_lines[light_position].pose.pose, self.waypoints.waypoints)
             

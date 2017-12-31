@@ -173,7 +173,7 @@ class WaypointUpdater(object):
                     # Set target speed per waypoint
                     # First just see whether the car deccelerates / stops if the traffic light ahead is red
                 waypoints_from_red_light = 100
-                if (self.red_light_waypoint_index and (abs(self.red_light_waypoint_index.data - next_waypoint_index) <= waypoints_from_red_light)):
+                if (self.red_light_waypoint and (abs(self.red_light_waypoint - next_waypoint_index) <= waypoints_from_red_light)):
                     for waypoint in lookahead_waypoints:
                         waypoint.twist.twist.linear.x = 0
        

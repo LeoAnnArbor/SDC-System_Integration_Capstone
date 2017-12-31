@@ -169,8 +169,12 @@ class WaypointUpdater(object):
                     # convert 10 miles per hour to meters per sec
                     self.set_waypoint_velocity(lookahead_waypoints, i, (TARGET_SPEED_MPH * 1609.34) / (60 * 60))
 
-            else:                
+            else: 
+                
+                print("index of red_light_waypoint" + str(self.red_light_waypoint ))               
                 redlight_lookahead_index = max(0, self.red_light_waypoint - next_waypoint_index)
+                print("index of redlight_lookahead_index" + str(redlight_lookahead_index))
+
                 lookahead_waypoints = self.decelerate(lookahead_waypoints, redlight_lookahead_index)
 
             lane = Lane()

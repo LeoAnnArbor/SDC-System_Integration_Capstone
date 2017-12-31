@@ -23,7 +23,7 @@ TODO (for Yousuf and Aaron): Stopline location for each traffic light.
 '''
 
 LOOKAHEAD_WPS = 200 # Number of waypoints we will publish. You can change this number
-MAX_DECEL = 0.5
+MAX_DECEL = 1.0
 STOP_DIST = 5.0
 TARGET_SPEED_MPH = 10
 
@@ -140,8 +140,8 @@ class WaypointUpdater(object):
                 dist = self.euclidean_distance_3d(wp.pose.pose.position, last.pose.pose.position)
                 dist = max(0, dist - STOP_DIST)                
                 vel  = math.sqrt(2 * MAX_DECEL * dist) 
-                if vel < 1.:
-                    vel = 0.
+                if vel < 1.0:
+                    vel = 0.0
             
             wp.twist.twist.linear.x = min(vel, wp.twist.twist.linear.x)
 

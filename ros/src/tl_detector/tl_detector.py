@@ -237,14 +237,14 @@ class TLDetector(object):
         # self.waypoints = None
         return -1, TrafficLight.UNKNOWN
 
-    def cap_value(self, value, min, max):
+    # def cap_value(self, value, min, max):
 
-        if value < min:
-            vaue = min
-        elif value > max:
-            value = max
+    #     if value < min:
+    #         vaue = min
+    #     elif value > max:
+    #         value = max
 
-        return value
+    #     return value
 
 if __name__ == '__main__':
     try:

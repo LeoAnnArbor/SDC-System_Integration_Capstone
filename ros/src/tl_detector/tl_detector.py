@@ -137,7 +137,7 @@ class TLDetector(object):
             int: index of the closest waypoint in self.waypoints
         """
         
-        min_dist = 1e100
+        min_dist = 10000000
         index = 0
         
         for idx, point in enumerate(pose_list):
@@ -165,6 +165,8 @@ class TLDetector(object):
         if(not self.has_image):
             self.prev_light_loc = None
             return False
+        
+        self.camera_image.encoding = "rgb8"
 
         cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
 
@@ -173,7 +175,7 @@ class TLDetector(object):
         print("classified traffic light" + str(classification))
         return classification
 
-    def generate_stop_line(self, x, y, z):
+    def generate_light(self, x, y, z):
         
         light = TrafficLight()
         light.pose = PoseStamped()
@@ -203,8 +205,9 @@ class TLDetector(object):
             light_position = self.get_closest_index(self.pose.pose, self.lights)
 
             stop_lines = list()
+            
             for light_pos in stop_line_positions:
-                light =  self.generate_stop_line(light_pos[0], light_pos[1], 0.)
+                light =  self.generate_light(light_pos[0], light_pos[1], 0.0)
                 stop_lines.append(light)
             
             stop_line_wp = self.get_closest_index(stop_lines[light_position].pose.pose, self.waypoints.waypoints)

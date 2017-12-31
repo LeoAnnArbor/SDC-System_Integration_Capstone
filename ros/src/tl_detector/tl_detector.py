@@ -56,14 +56,14 @@ class TLDetector(object):
 
     def loop(self):
         
-        rate = rospy.Rate(5) #Hz
+        rate = rospy.Rate(10) #Hz
 
         while not rospy.is_shutdown():
 
             if self.pose is not None and self.waypoints is not None and self.has_image:
                 
                 light_wp, state = self.process_traffic_lights()
-                print("output state of process_traffic_lights" + str(state))
+                # print("output state of process_traffic_lights" + str(state))
                 '''
                 Publish upcoming red lights at camera frequency.
                 Each predicted state has to occur `STATE_COUNT_THRESHOLD` number
@@ -172,7 +172,7 @@ class TLDetector(object):
 
         classification, show_img = self.light_classifier.get_classification(cv_image)
         #Get classification
-        print("classified traffic light" + str(classification))
+        # print("classified traffic light" + str(classification))
         return classification
 
     def generate_light(self, x, y, z):
@@ -204,7 +204,7 @@ class TLDetector(object):
 
             light_position = self.get_closest_index(self.pose.pose, self.lights)
 
-            
+
             
             stop_lines = list()
             
@@ -215,7 +215,7 @@ class TLDetector(object):
             stop_line_wp = self.get_closest_index(stop_lines[light_position].pose.pose, self.waypoints.waypoints)
             
             state = self.get_light_state(self.lights[light_position])
-            rospy.loginfo_throttle(2, "Light: " + str(state))
+            # rospy.loginfo_throttle(2, "Light: " + str(state))
             
             return stop_line_wp, state
 

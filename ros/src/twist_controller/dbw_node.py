@@ -91,6 +91,7 @@ class DBWNode(object):
         rospy.Subscriber('/vehicle/dbw_enabled', Bool, self.dbw_enabled_cb, queue_size=1)
 
         self.loop()
+        
     def current_velocity_cb(self, current_velocity):
         self.current_velocity = current_velocity
 
